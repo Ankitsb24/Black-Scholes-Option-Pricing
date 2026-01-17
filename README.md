@@ -60,4 +60,4 @@ The  pricing model provides full support for calculating the "Greeks," which rep
 ## 4. Example Analysis
 Assume there is an example with underlying asset price of $100, striker price is $105, expiration is in 1 year, risk-free rate is 0.05 and the volatility is 0.2, and the option is a call option. The following is the Black-Schole Analysis for this example call option
 
-![example](example/example.png)
+![example](examples/example.png)
