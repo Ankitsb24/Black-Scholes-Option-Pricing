@@ -1,1 +1,58 @@
-1. Mathematical FormulationThe Black-Scholes-Merton model assumes that the price of the underlying asset follows a Geometric Brownian Motion with constant drift and volatility.Option Pricing FormulaThe price of a European call option ($C$) and put option ($P$) are defined as:$$C = S_0 N(d_1) - K e^{-rT} N(d_2)$$$$P = K e^{-rT} N(-d_2) - S_0 N(-d_1)$$Where the components $d_1$ and $d_2$ are calculated as:$$d_1 = \frac{\ln(\frac{S_0}{K}) + (r + \frac{\sigma^2}{2})T}{\sigma \sqrt{T}}$$$$d_2 = d_1 - \sigma \sqrt{T}$$$S_0$: Current price of the underlying asset.$K$: Strike price.$T$: Time to expiration (in years).$r$: Risk-free interest rate.$\sigma$: Volatility of the underlying asset.$N(\cdot)$: Cumulative distribution function (CDF) of the standard normal distribution.The Greeks (Sensitivities)The engine calculates five primary risk measures:Delta ($\Delta$): $\frac{\partial V}{\partial S}$ — Sensitivity to the underlying price.Gamma ($\Gamma$): $\frac{\partial^2 V}{\partial S^2}$ — Rate of change in Delta.Vega ($\nu$): $\frac{\partial V}{\partial \sigma}$ — Sensitivity to volatility.Theta ($\Theta$): $\frac{\partial V}{\partial T}$ — Sensitivity to the passage of time (Time Decay).Rho ($\rho$): $\frac{\partial V}{\partial r}$ — Sensitivity to the risk-free rate.2. Model Mechanics & AssumptionsThe model operates under the following structural assumptions to maintain analytical tractability:No Dividends: No payouts occur during the life of the option.Efficient Markets: Asset prices follow a random walk; market movements are unpredictable.Frictionless Trading: There are no transaction costs, taxes, or margin requirements.Constant Parameters: The risk-free rate and volatility are known and remain constant.Log-Normal Returns: The returns on the underlying asset are normally distributed, meaning the price itself is log-normally distributed.European Style: The option can only be exercised at the exact moment of expiration ($T$).3. Technical ImplementationTechniques UsedObject-Oriented Programming (OOP): The engine is encapsulated in a BlackScholesModel class, allowing for easy instantiation of different option contracts and modular access to pricing and Greeks.Vectorization: Leveraged NumPy arrays to allow for simultaneous pricing across a range of underlying values, essential for generating smooth visualization curves.Statistical Modeling: Utilized SciPy for high-precision normal distribution functions (CDF and PDF).Required PackagesNumPy: For numerical arrays and efficient mathematical operations.SciPy: Specifically scipy.stats.norm for probability distributions.Matplotlib: For generating the comprehensive six-panel analytical dashboard.4. Visual Analysis SuiteThe repository includes a visualization script that generates a dashboard showing how the option price and each of the five Greeks evolve as the underlying asset price moves. This is crucial for understanding Moneyness (In-the-money vs. Out-of-the-money) and its impact on risk.
+# Black-Scholes Option Pricing
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![SciPy](https://img.shields.io/badge/SciPy-%230C55A5.svg?style=for-the-badge&logo=scipy&logoColor=white)
+![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
+![LaTeX](https://img.shields.io/badge/latex-%23008080.svg?style=for-the-badge&logo=latex&logoColor=white)
+
+A Python implementation of the Black-Scholes-Merton (BSM) Model used for pricing European-style options and calculating their sensitivities (The Greeks). This is designed for quantitative analysis, utilizing vectorized operations to allow for rapid sensitivity testing across varying market conditions.
+
+The project is under the following assumptions for simplicity:
+*  No dividends are paid with the underlying asset.
+*  Markets are random (Brownian Motion is used for the movement of each asset).
+*  No transaction costs or taxes.
+*  Risk-free rate and volatility are always constant.
+*  Returns are log-normally distributed.
+*  European exercise style (no early execution).
+
+## 1. Methematical Formulation
+The Black-Scholes model assumes that the price of the underlying asset follows a Geometric Brownian Motion (GBM). The analytical solutions for the price of a European call ($C$) and put ($P$) are:
+
+**Pricing Formulas**
+
+$$C = S_0 N(d_1) - K e^{-rT} N(d_2)$$
+
+$$P = K e^{-rT} N(-d_2) - S_0 N(-d_1)$$
+
+Where $d_1$ and $d_2$ are defined as:
+
+$$d_1 = \frac{\ln(S_0 / K) + (r + \sigma^2 / 2)T}{\sigma \sqrt{T}}$$
+
+$$d_2 = d_1 - \sigma \sqrt{T}$$
+
+**Variables:**
+* $S_0$: Current price of the underlying asset.
+* $K$: Strike price of the option.
+* $T$: Time to expiration (expressed in years).
+* $r$: Risk-free interest rate (constant).
+* $\sigma$: Volatility of the underlying asset's returns.
+* $N(\cdot)$: The Cumulative Distribution Function (CDF) of the standard normal distribution.
+
+## 2. The Greek (Risk Sensitivities)
+The  pricing model provides full support for calculating the "Greeks," which represent the sensitivity of the option's price to various model inputs:
+* Delta ($\Delta$): Measures the rate of change of the option price with respect to the underlying asset's price ($\frac{\partial V}{\partial S}$).
+* Gamma ($\Gamma$): Measures the rate of change in Delta with respect to the underlying price ($\frac{\partial^2 V}{\partial S^2}$).
+* Vega ($\nu$): Measures sensitivity to the volatility of the underlying asset ($\frac{\partial V}{\partial \sigma}$).
+* Theta ($\Theta$): Measures the sensitivity of the option value to the passage of time ($\frac{\partial V}{\partial T}$), also known as "time decay."
+* Rho ($\rho$): Measures sensitivity to the risk-free interest rate ($\frac{\partial V}{\partial r}$).
+
+## 3. Technical Implementation & Stack
+**Techniques**
+* **Object-Oriented Programming (OOP)**: The model is encapsulated in a BlackScholesModel class (see details in the py file).
+* **Vectorization**: Using `NumPy` allows the model to compute prices and Greeks for large arrays of underlying prices simultaneously, which is significantly faster than standard Python loops.
+* **Scientific Stack**: Applied `SciPy` statistical libraries for Cumulative Distribution Function (CDF) and Probability Density Function (PDF) calculations.
+* **Visualization**: A comprehensive 6-panel dashboard is generated using `Matplotlib` to visualize the relationship between the underlying price and all five Greeks.
+
+**Required Packages**
+* `NumPy`: For numerical computations and array handling.
+* `SciPy`: Specifically scipy.stats for normal distribution probability functions.
+* `Matplotlib`: For generating analytical charts and performance dashboards.
